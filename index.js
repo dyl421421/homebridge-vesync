@@ -68,13 +68,17 @@ VeseyncPlugPlatform.prototype.deviceDiscovery = function () {
     }).then(devices => {
         if (me.debug) me.log("Adding discovered devices");
         for (let i in devices) {
-            let existing = me.accessories[devices[i].id];
+            if (!me.exclude.includes(devices[i].id)) {
+                let existing = me.accessories[devices[i].id];
 
-            if (!existing) {
-                me.log("Adding device: ", devices[i].id, devices[i].name);
-                me.addAccessory(devices[i]);
+                if (!existing) {
+                    me.log("Adding device: ", devices[i].id, devices[i].name);
+                    me.addAccessory(devices[i]);
+                } else {
+                    if (me.debug) me.log("Skipping existing device", i);
+                }
             } else {
-                if (me.debug) me.log("Skipping existing device", i);
+                if (me.debug) me.log("Skipping excluded device " + devices[i].id)
             }
         }
 

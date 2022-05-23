@@ -1,5 +1,4 @@
 # homebridge-vesync
-[![verified-by-homebridge](https://badgen.net/badge/homebridge/verified/purple)](https://github.com/homebridge/homebridge/wiki/Verified-Plugins)
 
 [Homebridge](https://github.com/nfarina/homebridge) platform plugin for Etekcity Wifi Smart Plugs
 https://www.amazon.com/dp/B01M3MYIFS/
@@ -26,7 +25,8 @@ Configuration sample:
             "platform": "VesyncPlug",
             "name": "VesyncPlug",
             "username": "***",
-            "password": "***"
+            "password": "***",
+            "exclude": "deviceId1,deviceId2"
           }
         ]
 ```
@@ -35,6 +35,9 @@ Configuration sample:
 - debug, this will enable more logging information from the plugin
 
   "debug": "True"
+- exclude, this will exclude devices with given IDs from showing in the home
+  
+  "exclude": "7af4d35-23fac3243212312,7af4d35-23fac3243212315"
 
 ## Credits
 
@@ -44,3 +47,4 @@ Configuration sample:
 - Danimal4326 / NorthernMan54  - Used [homebridge-ecoplug](https://github.com/NorthernMan54/homebridge-ecoplug) as a template for platform registration and required operations for on/off
 - dirwin517 / keatontaylor - Used [etekcity-smartplug](https://github.com/arupex/etekcity-smartplug) as a template for sending the commands to vesync to control the outlet
 - micktron - Updated api to version 2, added support for ESO15-TB
+- dyl421421 - added exclusion list to limit devices shown in the home app
