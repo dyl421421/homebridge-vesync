@@ -89,7 +89,7 @@ VeseyncPlugPlatform.prototype.deviceDiscovery = function () {
                 var found = devices.find((device) => {
                     return device.id == index;
                 });
-                if (!found) {
+                if (!found || me.exclude.includes(index)) {
                     me.log("Previously configured accessory not found, removing", index);
                     me.removeAccessory(me.accessories[index]);
                 } else if (found.name != acc.context.name) {
